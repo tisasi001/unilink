@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+		<title>UNILINK</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="../../ESTILOA/default.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+	
+<body>
+
+	<div id="wrapper">
+		<div id="goiburua">
+			<div id="logo">
+				<form action="#{request.contextPath}/EDUKIAK/OROKORRA/eskaintzaAktiboakBistaratu.xhtml">
+					<input type="image" src="../../ESTILOA/unilink_logo.png" style="height: 110px;width: 220px;"/>
+				</form>					
+				<div id="profila">
+					<form action="#{request.contextPath}/EDUKIAK/OROKORRA/datuakBistaratu.xhtml">
+						<input type="image" src="../../ESTILOA/profila.png" style="height: 55px;width: 40px;"/>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		
+		<div id="page" class="round">
+			
+			<div id="splash">
+				<img src="../../ESTILOA/fotos2.jpg" alt="" width="960" height="200" class="round" />
+			</div>
+			
+				
+				<div id="content" class="round">
+				
+					<hr/><h1>#{eskaintzaileaViewMB.irakProfilaLortu(orokorraAtazakMB.idEskaintzailea).izena}</h1><hr/><br/>
+					<div id="wrapper2" class="round">	
+					<h2>Erabiltzailearen datuak:</h2>
+					<h:dataTable value="#{eskaintzaileaViewMB.irakProfilaLortu(orokorraAtazakMB.idEskaintzailea)}" var="i">
+					<h:column>
+						<b>IZENA: </b>#{i.izena} <br />
+						<b>USERNAME: </b>#{i.username} <br />
+						<b>LABURPENA: </b>#{i.laburpena} <br />
+						<b>ENPRESA IZENA: </b>#{i.enpresaIzena} <br />
+						<b>KOKALEKUA: </b>#{i.kokalekua} <br />
+						<b>LAN ESPARRUA: </b>#{i.lanEsparrua} <br />
+						<b>SAILA: </b>#{i.saila} <br />
+					</h:column>
+					</h:dataTable>
+					</div>
+					<br/>
+					<h:panelGroup rendered="#{eskaintzaileaViewMB.irakEskaintzakLortu(orokorraAtazakMB.idEskaintzailea).size()!=0}">
+						<div id="wrapper2" class="round">	
+						<h2>Eskaintzak:</h2>
+						<ui:repeat var="e" value="#{eskaintzaileaViewMB.irakEskaintzakLortu(orokorraAtazakMB.idEskaintzailea)}">
+							<h:form>
+							<h:commandLink action="eskaintza" actionListener="#{orokorraAtazakMB.eskaintzaKlikEgin(e.idEskaintza)}" type="submit" value="#{e.izenburua}" /> 
+							</h:form>
+							<h:panelGroup rendered="#{orokorraAtazakMB.rola==2}">
+							<h:panelGroup rendered="#{e.eskaintzaEgoera==1}">
+							<h:panelGroup rendered="#{eskatzaileAtazakMB.botoiaBistaratu(e.idEskaintza)}">
+								<br />
+								<h:form>
+								<h:commandButton actionListener="#{eskatzaileAtazakMB.eskariBatEginEskaintzaileDatuak(e, eskaintzaileaViewMB)}" type="submit" value="ESKARIA EGIN" class="boton3"/>
+								</h:form>
+							</h:panelGroup>
+							</h:panelGroup>
+							</h:panelGroup>
+							<hr />
+						</ui:repeat>
+						</div>
+					</h:panelGroup>
+				</div>
+				<div style="clear: both"></div>
+		
+			<!-- End Wrapper 2 -->
+			
+		<!-- End Page -->
+		</div>
+	
+	<!-- End Wrapper -->
+	</div>
+	
+	<h:form>
+	<div id="footer">
+		<p>Zalantzarik izatekotan idatzi <h:commandLink action="bezeroArreta" value="formulario" /> honetan</p>
+		<p>UNILINK, created by Iker Alkorta, Irati Bilbao, Telmo Isasi and Nerea Jiménez</p>
+	</div>
+	</h:form>
+</body>
+</html>

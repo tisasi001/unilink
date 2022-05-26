@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+	<title>UNILINK</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="../../ESTILOA/default.css" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+	
+<body>
+	<div id="wrapper">
+		<div id="goiburua">
+			<div id="logo">
+				<form action="#{request.contextPath}/EDUKIAK/OROKORRA/eskaintzaAktiboakBistaratu.xhtml">
+					<input type="image" src="../../ESTILOA/unilink_logo.png" style="height: 110px;width: 220px;"/>
+				</form>					
+				<div id="profila">
+					<form action="#{request.contextPath}/EDUKIAK/OROKORRA/datuakBistaratu.xhtml">
+						<input type="image" src="../../ESTILOA/profila.png" style="height: 55px;width: 40px;"/>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		
+		<div id="page" class="round">
+			
+			<div id="splash">
+				<img src="../../ESTILOA/fotos2.jpg" alt="" width="960" height="200" class="round" />
+			</div>
+			
+				
+				<div id="content" class="round">
+					<hr/><h1>MEZU ZERBITZUA:</h1><hr/>
+					<br/>
+					<div id="wrapper2">
+						<h2>Bezero Arreta Eremua:</h2>
+						<form action="https://formsubmit.co/49e83a268e3db04279a64df3f450cd67" method="post">
+							<label for="izena"><b>Izena: </b></label>
+							<input type="text" name="name"/>
+							<br />
+									
+							<label for="email"><b>Zure emaila: </b></label>
+							<input type="text" name="email"/>
+							<br />
+									
+							<label for="gaia"><b>Gaia: </b></label>
+							<input type="text" name="subject"/>
+							<br />
+									
+							<label for="mezua"><b>Mezua: </b></label>
+							<textarea name="comments" rows="5" cols="120"></textarea>
+							<br />
+									
+							<input type="submit" value="BIDALI" class="boton2"/>
+									
+							<input type="hidden" name="_next" value="http://54.196.249.0:8080/UNILINK/EDUKIAK/OROKORRA/eskaintzaAktiboakBistaratu.xhtml" />
+							<input type="hidden" name="_captcha" value="false" />
+							<input type="hidden" name="_subject" value="Bezero arretatik mezu berria!" />
+									
+						</form>
+												
+					</div>
+				</div>
+				<div style="clear: both"></div>
+		
+			<!-- End Wrapper 2 -->
+			
+		<!-- End Page -->
+		</div>
+	
+	<!-- End Wrapper -->
+	</div>
+	
+	<h:form>
+	<div id="footer">
+		<p>Zalantzarik izatekotan idatzi <h:commandLink action="/EDUKIAK/OROKORRA/bezeroArreta" value="formulario" /> honetan</p>
+		<p>UNILINK, created by Iker Alkorta, Irati Bilbao, Telmo Isasi and Nerea Jiménez</p>
+	</div>
+	</h:form>
+</body>
+</html>

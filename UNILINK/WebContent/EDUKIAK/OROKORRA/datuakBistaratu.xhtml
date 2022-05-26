@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+		<title>UNILINK</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="../../ESTILOA/default.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+	
+	<body>
+
+		<div id="wrapper">
+			<div id="goiburua">
+				<div id="logo">
+					<form action="#{request.contextPath}/EDUKIAK/OROKORRA/eskaintzaAktiboakBistaratu.xhtml">
+						<input type="image" src="../../ESTILOA/unilink_logo.png" style="height: 110px;width: 220px;"/>
+					</form>					
+					<div id="profila">
+						<form action="#{request.contextPath}/EDUKIAK/OROKORRA/datuakBistaratu.xhtml">
+							<input type="image" src="../../ESTILOA/profila.png" style="height: 55px;width: 40px;"/>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			
+			<div id="page" class="round">
+				
+				<div id="splash">
+					<img src="../../ESTILOA/fotos2.jpg" alt="" width="960" height="200" class="round" />
+				</div>
+				
+					
+					<div id="content" class="round">
+					
+						<hr/><h1>PROFILA</h1><hr/>
+						<br/>
+						<h:panelGroup rendered="#{orokorraAtazakMB.rola==1}">
+						<div id="wrapper2" class="round">	
+						<h2>ZURE DATUAK:</h2>
+							<h:dataTable value="#{profilaViewMB.irakBatenDatuakLortuDB()}" var="i">
+								<h:column>
+									<b>USERNAME: </b>#{i.username} <br/>
+									<b>PASAHITZA: </b>#{i.pasahitza}<br/>
+									<b>IZEN-ABIZENAK: </b>#{i.izena}<br/>
+									<b>EMAIL: </b>#{i.email}<br/>
+									<b>ENPRESAREN IZENA: </b>#{i.enpresaIzena}<br/>
+									<b>LAN ESPARRUA: </b>#{i.lanEsparrua}<br/>
+									<b>SAILA: </b>#{i.saila}<br/>
+									<b>KOKALEKUA: </b>#{i.kokalekua}<br/>
+									<b>LABURPENA: </b>#{i.laburpena}<br/>
+								</h:column>
+							</h:dataTable>
+							<h:form>
+								<h:commandButton action="/EDUKIAK/ESKAINTZAILEA/profilaEskaintzailea" actionListener="#{eskaintzaileaFormMB.balioakHasieratu(profilaViewMB)}" id="profilaEditatu" value="EDITATU" class="boton3"/>
+								<h:commandButton action="profilaEzabatuta" actionListener="#{eskaintzaileAtazakMB.eskaintzaileaEzabatuDB()}" id="profilaEzabatu" value="KONTUA EZABATU" class="boton3"/>
+							</h:form>
+						</div><br/>
+						<h:panelGroup rendered="#{profilaViewMB.irakBatenEskaintzakLortu().size()!=0}">
+							<div id="wrapper2" class="round">	
+								<h2>ZURE ESKAINTZAK:</h2>
+								<ui:repeat var="e" value="#{profilaViewMB.irakBatenEskaintzakLortu()}">
+									<h:form>
+											<h:commandLink action="/EDUKIAK/ESKAINTZAILEA/eskaintzaIrakaslea" actionListener="#{orokorraAtazakMB.eskaintzaKlikEgin(e.idEskaintza)}" type="submit" value="#{e.izenburua}" /> <br />
+										</h:form>
+										<h:panelGroup rendered="#{e.eskaintzaEgoera==0}">
+											<b>INAKTIBO</b> <br />
+										</h:panelGroup>
+										<h:panelGroup rendered="#{e.eskaintzaEgoera==1}">
+											<b>AKTIBO</b> <br />
+										</h:panelGroup>
+										<h:form>
+											<h:commandButton actionListener="#{eskaintzaileAtazakMB.eskaintzaEgoeraAldatu(e,profilaViewMB)}" id="eskaintzaEgoeraAldatu" value="EGOERA ALDATU" class="boton3"/>
+											&emsp;&emsp;
+											<h:commandButton actionListener="#{eskaintzaileAtazakMB.eskaintzaEzabatu(e,profilaViewMB)}" id="eskaintzaEzabatu" value="EZABATU" class="boton3"/>
+										</h:form>
+										<hr />
+								</ui:repeat>
+							</div>
+						</h:panelGroup>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{orokorraAtazakMB.rola==2}">
+						<div id="wrapper2" class="round">	
+						<h2>ZURE DATUAK:</h2>
+							<h:dataTable value="#{profilaViewMB.ikasBatenDatuakLortuDB()}" var="i">
+								<h:column>
+									<b>USERNAME: </b>#{i.username}<br/>
+									<b>PASAHITZA: </b>#{i.pasahitza}<br/>
+									<b>IZEN-ABIZENAK: </b>#{i.izenAbizenak}<br/>
+									<b>EMAIL: </b>#{i.email}<br/>
+									<b>TITULOAK: </b>#{i.tituluak}<br/>
+									<b>BIZILEKUA: </b>#{i.bizilekua}<br/>
+									<b>HIZKUNTZAK: </b>#{i.hizkuntzak}<br/>
+									<b>BESTELAKO GAITASUNAK: </b>#{i.gaitasunak}<br/>
+								</h:column>
+							</h:dataTable>
+							<h:form>
+								<h:commandButton action="/EDUKIAK/ESKATZAILEA/profilaEskatzailea" actionListener="#{eskatzaileaFormMB.balioakHasieratu(profilaViewMB)}" id="profilaEditatu" value="EDITATU" class="boton3"/>
+								<h:commandButton action="profilaEzabatuta" actionListener="#{eskatzaileAtazakMB.eskatzaileaEzabatuDB()}" id="profilaEzabatu" value="KONTUA EZABATU" class="boton3"/> 
+							</h:form>
+						</div><br/>
+						<h:panelGroup rendered="#{profilaViewMB.ikasBatenEskariakLortu().size()!=0}">
+							<div id="wrapper2" class="round">
+								<h2>ZURE ESKARIAK:</h2>
+								<ui:repeat var="e" value="#{profilaViewMB.ikasBatenEskariakLortu()}">
+									<h:form>
+										<h:commandLink action="eskaintza" actionListener="#{orokorraAtazakMB.eskaintzaKlikEgin(e.eskaintzaE.idEskaintza)}" type="submit" value="#{e.eskaintzaE.izenburua}" /> <br />
+									</h:form>
+									#{e.eskaintzaE.graduak} <br />
+									<h:panelGroup rendered="#{e.eskariaEgoera==1}">
+										<b>IKUSTEKE</b>
+									</h:panelGroup>
+									<h:panelGroup rendered="#{e.eskariaEgoera==2}">
+										<b>ONARTUA !<br />
+										ARDURADUNAREKIN JARRI ZAITEZ KONTAKTUAN:</b><br />
+										<h:form>
+											<b><h:commandLink action="/EDUKIAK/ESKATZAILEA/mezua" actionListener="#{eskatzaileAtazakMB.emailKlikEgin(e.eskaintzaE.eskaintzaileaE.email)}" type="submit" value="#{e.eskaintzaE.eskaintzaileaE.email}" /></b>
+										</h:form>
+									</h:panelGroup>
+									<h:panelGroup rendered="#{e.eskariaEgoera==3}">
+										<b>UKATUTA</b>
+									</h:panelGroup>
+									<hr />
+								</ui:repeat>
+							</div>
+						</h:panelGroup>
+						</h:panelGroup>
+						
+					</div>
+			
+					<div style="clear: both"></div>
+			
+				<!-- End Wrapper 2 -->
+
+				
+			<!-- End Page -->
+			</div>
+		
+		<!-- End Wrapper -->
+		</div>
+	
+	<h:form>	
+	<div id="footer">
+		<p>Zalantzarik izatekotan idatzi <h:commandLink action="bezeroArreta" value="formulario" /> honetan</p>
+		<p>UNILINK, created by Iker Alkorta, Irati Bilbao, Telmo Isasi and Nerea Jiménez</p>
+	</div>
+	</h:form>
+	</body>
+	
+</html>

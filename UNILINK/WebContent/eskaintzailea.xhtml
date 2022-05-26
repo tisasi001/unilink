@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+	<title>UNILINK</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="./ESTILOA/default.css" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+	
+<body>
+	<div id="wrapper">
+		<div id="goiburua">
+			<div id="logo">
+				<form action="#{request.contextPath}/index.xhtml">
+					<input type="image" src="./ESTILOA/unilink_logo.png" style="height: 110px;width: 220px;"/>
+				</form>			
+			</div>
+		</div>
+
+		
+		<div id="page" class="round">
+			
+			<div id="splash">
+				<img src="./ESTILOA/fotos2.jpg" alt="" width="960" height="200" class="round" />
+			</div>
+			
+				
+				<h:panelGroup rendered="#{erregistratuAtazakMB.eskaintzaileHartua==0}">
+				<div id="content" class="round">
+					<hr/><h1>ERREGISTRATU:</h1><hr/>
+					<br/>
+					<h:form>
+					<div id="wrapper2">
+						<h2>Zure datuak sartu:</h2>
+							<b>USERNAME*: </b>
+							<h:inputText id="us" value="#{eskaintzaileaFormMB.username}" required="true" requiredMessage="USERNAME eremua derrigorrezkoa da"/>
+							<br/>
+							<b>PASAHITZA*: </b>
+							<h:inputSecret id="pas" value="#{eskaintzaileaFormMB.pasahitza}" required="true" requiredMessage="PASAHITZA eremua derrigorrezkoa da"/>
+							<br/>
+							<b>IZEN-ABIZENAK*: </b>
+							<h:inputText id="iz" value="#{eskaintzaileaFormMB.izena}" required="true" requiredMessage="IZEN-ABIZENAK eremua derrigorrezkoa da"/>
+							<br/>
+							<b>EMAIL*: </b>
+							<h:inputText id="em" value="#{eskaintzaileaFormMB.email}" required="true" requiredMessage="EMAIL eremua derrigorrezkoa da"/>
+							<br/>
+							<b>ENPRESAREN IZENA: </b>
+							<h:inputText value="#{eskaintzaileaFormMB.enpresaIzena}"/>
+							<br/>
+							<b>LAN ESPARRUA: </b>
+							<h:inputText value="#{eskaintzaileaFormMB.lanEsparrua}"/>
+							<br/>
+							<b>SAILA: </b>
+							<h:inputText value="#{eskaintzaileaFormMB.saila}" />
+							<br/>
+							<b>KOKALEKUA: </b>
+							<h:inputText value="#{eskaintzaileaFormMB.kokalekua}" />
+							<br/>
+							<b>LABURPENA: </b>
+							<h:inputText value="#{eskaintzaileaFormMB.laburpena}" />
+							<br/><br/>
+							<h:commandButton actionListener="#{erregistratuAtazakMB.eskaintzaileaErregistratuDB(eskaintzaileaFormMB)}" action="eskaintzailea" value="ERREGISTRATU" class="boton3"/>
+							<br/>
+							<h:panelGroup rendered="#{erregistratuAtazakMB.kodeaIrak==2}">
+								<h:outputText value="#{erregistratuAtazakMB.mezua}" />
+							</h:panelGroup>
+					</div>
+					<h:message for="us" style="color:red"/>
+					<br/>
+					<h:message for="pas" style="color:red"/>
+					<br/>
+					<h:message for="iz" style="color:red"/>
+					<br/>
+					<h:message for="em" style="color:red"/>
+					</h:form>
+				</div>
+				</h:panelGroup>
+				<h:panelGroup rendered="#{erregistratuAtazakMB.eskaintzaileHartua==1}">
+				<div id="content" class="round">
+					<hr/><h1>MEZU ZERBITZUA:</h1><hr/>
+					<br/>
+					<div id="wrapper2">
+						<h2>EMAIL AKTIBAZIOA</h2>
+						UniLink plataformak FormSubmit APIa erabiltzen du mezuen transmisiorako. Baina, lehenik mezuak jasotzeko zure emaila aktibatu behar duzu. <br />
+						Mesedez, baieztatu zure emaila egokia dela eta "AKTIBATU" sakatu.<br />
+						Emaila egokia ez bada, "AURRERA EGIN" sakatu eta logeatzen zarenean zure profila edozein momentuan editatu dezakezu.<br />
+						Gogoratu, emaila aldatzen baduzu helduko zaizun lehenengo mezuarekin emaila berriz aktibatu beharko duzula.<br />
+						<br />
+						
+						<h:dataTable value="#{erregistratuAtazakMB.erregistratutakoEskaintzaileaLortu()}" var="e">
+						<h:column>
+						<h:outputText value="#{e.email}" />
+							<form action="https://formsubmit.co/#{e.email}" method="post">	
+								<input type="hidden" name="name" value="#{e.izena}"/>
+
+										
+								<input type="hidden" name="email" value="#{e.email}"/>
+								
+								
+								<input type="hidden" name="subject"/>
+								<br />
+								
+								
+								<input type="hidden" name="comments" />
+								
+								
+								
+								<input type="submit" value="AKTIBATU" class="boton2"/>
+								
+								<input type="hidden" name="_next" value="http://54.196.249.0:8080/UNILINK/index.xhtml" />
+								<input type="hidden" name="_captcha" value="false" />
+								<input type="hidden" name="_subject" value="UniLink emaila aktibatuta!" />
+							</form>
+						</h:column>
+						</h:dataTable>
+						<form action="#{request.contextPath}/index.xhtml">
+							<button type="submit" class="boton3">AURRERA EGIN</button>
+						</form>
+				</div>
+				</div>
+				</h:panelGroup>
+				<div style="clear: both"></div>
+			</div>
+			<!-- End Wrapper 2 -->
+			
+		<!-- End Page -->
+		</div>
+	
+	<!-- End Wrapper -->
+</body>
+</html>

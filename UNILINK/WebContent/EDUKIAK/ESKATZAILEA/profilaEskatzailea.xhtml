@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+		<title>UNILINK</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="../../ESTILOA/default.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+	
+	<body>
+
+		<div id="wrapper">
+			<div id="goiburua">
+				<div id="logo">
+					<form action="#{request.contextPath}/EDUKIAK/OROKORRA/eskaintzaAktiboakBistaratu.xhtml">
+						<input type="image" src="../../ESTILOA/unilink_logo.png" style="height: 110px;width: 220px;"/>
+					</form>					
+					<div id="profila">
+						<form action="#{request.contextPath}/EDUKIAK/OROKORRA/datuakBistaratu.xhtml">
+							<input type="image" src="../../ESTILOA/profila.png" style="height: 55px;width: 40px;"/>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			
+			<div id="page" class="round">
+				
+				<div id="splash">
+					<img src="../../ESTILOA/fotos2.jpg" alt="" width="960" height="200" class="round" />
+				</div>
+				
+					
+					<div id="content" class="round">
+					
+						<hr/><h1>PROFILA</h1><hr/><br/>
+						<h:form>
+						<div id="wrapper2" class="round">	
+						<h2>ZURE DATUAK:</h2>
+							<b>USERNAME*: </b>
+							<h:outputText value="#{eskatzaileaFormMB.username}" />
+							<br/>
+							<b>PASAHITZA*: </b>
+							<h:inputText id="pas" value="#{eskatzaileaFormMB.pasahitza}" required="true" requiredMessage="PASAHITZA eremua derrigorrezkoa da"/>
+							<br/>
+							<b>IZEN-ABIZENAK*: </b>
+							<h:inputText id="iz" value="#{eskatzaileaFormMB.izenAbizenak}" required="true" requiredMessage="IZEN-ABIZENAK eremua derrigorrezkoa da"/>
+							<br/>
+							<b>EMAIL*: </b>
+							<h:inputText id="em" value="#{eskatzaileaFormMB.email}" required="true" requiredMessage="EMAIL eremua derrigorrezkoa da"/>
+							<br/>
+							<b>TITULOAK: </b>
+							<h:inputText value="#{eskatzaileaFormMB.tituluak}" />
+							<br/>
+							<b>BIZILEKUA: </b>
+							<h:inputText value="#{eskatzaileaFormMB.bizilekua}" />
+							<br/>
+							<b>HIZKUNTZAK: </b>
+							<h:inputText value="#{eskatzaileaFormMB.hizkuntzak}" />
+							<br/>
+							<b>BESTELAKO GAITASUNAK: </b>
+							<h:inputText value="#{eskatzaileaFormMB.gaitasunak}" />
+							<br/>
+							<h:commandButton action="/EDUKIAK/OROKORRA/datuakBistaratu" actionListener="#{eskatzaileAtazakMB.profilaEskatzaileaGorde(eskatzaileaFormMB)}" value="GORDE" class="boton3"/>
+							<br/>
+						</div>
+						<h:message for="us" style="color:red"/>
+						<br/>
+						<h:message for="pas" style="color:red"/>
+						<br/>
+						<h:message for="iz" style="color:red"/>
+						<br/>
+						<h:message for="em" style="color:red"/>
+						</h:form>
+					</div>
+			
+					<div style="clear: both"></div>
+			
+				<!-- End Wrapper 2 -->
+
+				
+			<!-- End Page -->
+			</div>
+		
+		<!-- End Wrapper -->
+		</div>
+		
+		<h:form>
+		<div id="footer">
+			<p>Zalantzarik izatekotan idatzi <h:commandLink action="/EDUKIAK/OROKORRA/bezeroArreta" value="formulario" /> honetan</p>
+			<p>UNILINK, created by Iker Alkorta, Irati Bilbao, Telmo Isasi and Nerea Jiménez</p>
+		</div>
+		</h:form>
+	</body>
+</html>
